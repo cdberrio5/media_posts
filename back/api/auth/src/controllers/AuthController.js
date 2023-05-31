@@ -48,10 +48,12 @@ class AuthController {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const userId = await User.createUser(fullName, email, hashedPassword);
+
+      const userCreated = await User.getByEmail(email);
       
       const token = jwt.sign({ userId }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-      return res.json({ token });
+      return res.json({ token, name: userCreated.full_name });
     } catch (error) {
       return res.status(500).json({ message: 'Error en el servidor' });
     }
