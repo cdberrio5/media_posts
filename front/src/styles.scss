@@ -14,3 +14,18 @@ html, body {
 * {
     font-family: "lato", sans-serif;
 }
+
+.no-border {
+    border: 0 !important;
+}
+
+.text-swal {
+    font-family: "lato", sans-serif;
+    font-size: 4vh;
+    color: #474747;
+}
+
+.swal-confirm-button {
+    background: linear-gradient(270deg, #C645A9 17.66%, #58BBDB 89.57%) !important;
+    border-radius: 20px !important;
+}
