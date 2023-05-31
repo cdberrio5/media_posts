@@ -10,16 +10,18 @@ import { FeedComponent } from './components/feed/feed.component';
 import { PostsComponent } from './components/feed/posts/posts.component';
 import { CreatePostComponent } from './components/feed/create-post/create-post.component';
 import { MyPostsComponent } from './components/feed/my-posts/my-posts.component';
+import { LogOutComponent } from './components/feed/log-out/log-out.component';
 
 const routes: Routes = [
   { path: "auth/login", component: LoginComponent, title: "Login" },
   { path: "auth/register", component: RegisterComponent, title: "Register" },
   { path: "", redirectTo: 'auth/login', pathMatch: "full" },
+  { path: "log-out", component: LogOutComponent },
   {
     path: "home", component: FeedComponent, children: [
       { path: "", component: PostsComponent },
       { path: "create-post", component: CreatePostComponent },
-      { path: "my-posts", component: MyPostsComponent }
+      { path: "my-posts", component: MyPostsComponent },
     ]
   }
 ];
