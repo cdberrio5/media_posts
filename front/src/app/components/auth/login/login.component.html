@@ -21,7 +21,11 @@
                 <div class="group">
                     <span>Password</span>
                     <div class="input">
-                        <input type="password" minlength="8" placeholder="**************" formControlName="password">
+                        <input #password type="password" minlength="8" placeholder="**************" formControlName="password">
+                        <div class="icon">
+                            <fa-icon (click)="showPassword(true, 'text')" *ngIf="!showPass" [icon]="faeye"></fa-icon>
+                            <fa-icon (click)="showPassword(false, 'password')" *ngIf="showPass" [icon]="faeyeslash"></fa-icon>
+                        </div>
                     </div>
                     <span *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']" class="error">Please provide a password</span>
                     <span *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['minlength']" class="error">The password must have a minimum of 8 characters</span>

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +11,13 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 })
 
 export class LoginComponent {
-  loginForm!: FormGroup;
+  @ViewChild('password') password!: ElementRef;
 
+  loginForm!: FormGroup;
+  faeye = faEye;
+  faeyeslash = faEyeSlash;
   auth: boolean = true;
+  showPass: boolean = false;
 
   constructor(private fb: FormBuilder) {
 
@@ -35,5 +42,10 @@ export class LoginComponent {
     }
 
     alert("Enviado");
+  }
+
+  showPassword(change: boolean, type: string) {
+    this.showPass = change;
+    this.password.nativeElement.type = type;   
   }
 }

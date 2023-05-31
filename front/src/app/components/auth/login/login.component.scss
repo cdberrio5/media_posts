@@ -79,6 +79,7 @@
     
                     .input {
                         border-bottom: 1px solid white;
+                        display: flex;
     
                         input {
                             background: transparent;
@@ -94,6 +95,13 @@
                             &::placeholder {
                                 color: #B7B7B7;
                             }
+                        }
+
+                        .icon {
+                            color: white;
+                            text-align: center;
+                            margin-left: auto;
+                            margin-right: auto;
                         }
                     }
     
