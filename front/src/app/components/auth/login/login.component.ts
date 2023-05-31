@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -37,9 +37,7 @@ export class LoginComponent {
         Validators.required,
         Validators.min(8),
        ])]
-    });    
-
-    this.validateUser();
+    });
   }
 
   login() {
@@ -63,11 +61,5 @@ export class LoginComponent {
   showPassword(change: boolean, type: string) {
     this.showPass = change;
     this.password.nativeElement.type = type;   
-  }
-
-  validateUser() {
-    if(localStorage.getItem("secret-key")) {
-      this.router.navigate(["/home"]);
-    }
   }
 }

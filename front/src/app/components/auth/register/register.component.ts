@@ -1,6 +1,12 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 
+import { Router } from '@angular/router';
+
+import { HttpClient } from '@angular/common/http';
+
+import { enviroment } from './../../../../environments/enviroment';
+
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,7 +27,7 @@ export class RegisterComponent {
   showPass: boolean = false;
   showConfirmPass: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
 
   }
 
@@ -29,7 +35,7 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
         fullName: ['', Validators.compose([
           Validators.required,
-          Validators.pattern('/[^a-zA-Z\s]+/')
+          Validators.pattern(/^[a-zA-Z\s]+$/)
         ])],
         email: ['', Validators.compose([
           Validators.required,
@@ -52,7 +58,19 @@ export class RegisterComponent {
       return;
     }
 
-    alert("Enviado");
+    const user = {
+      email: this.registerForm.controls["email"].value,
+      password: this.registerForm.controls["password"].value,
+      confirmPassword: this.registerForm.controls["confirmPassword"].value,
+      fullName: this.registerForm.controls["fullName"].value,
+    }
+
+    this.http.post<any>(enviroment.ApiUrlUser + "register", user).subscribe((res) => {
+      localStorage.setItem("secret-key", res.token);
+      localStorage.setItem("name", res.name);
+
+      this.router.navigate(["/home"]);
+    })
   }
 
   validatePasswords(formGroup: FormGroup) {
