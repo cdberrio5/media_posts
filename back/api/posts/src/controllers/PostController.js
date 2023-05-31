@@ -32,6 +32,9 @@ class PostController {
 
             const posts = await Post.getMyPosts(page, date, req.userId);
 
+            posts.total = await Post.getCountPosts("", date, req.userId);
+            posts.pages = posts.total > 0 ? Math.round(posts.total / 2) : 0;
+
             return res.status(200).json(posts);
 
         } catch (error) {

@@ -56,6 +56,10 @@ export class CreatePostComponent {
     this.http.post<any>(enviroment.ApiUrlPost + "create", post, httpOptions).subscribe((res) => {
       this.swalSuccess();
     }, err => {
+      if(err.error.status == "expired") {
+        this.router.navigate(["/log-out"]);
+      }
+
       this.swalError();
     })
   }

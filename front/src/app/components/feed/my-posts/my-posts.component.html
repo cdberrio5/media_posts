@@ -2,67 +2,54 @@
     <h1>My Publications</h1>
 
     <div class="filters">
-        <form [formGroup]="filterForm" (ngSubmit)="filter()">
+        <form [formGroup]="filterForm">
             <div class="group">
                 <span>Date Select</span>
                 <div class="input">
-                    <input type="date" formControlName="date">
+                    <input type="date" formControlName="date" (change)="filterDate($event)">
                 </div>
             </div>
         </form>
     </div>
 
     <div class="posts" >
-        <span class="count">Showing 2 / 10 Post</span>
+        <span class="count">Showing {{show}} / {{total}} Post</span>
 
-        <div class="cards" >
-            <div class="card">
+        <div class="cards">
+            <div class="card" *ngFor="let post of posts">
                 <div class="card-header">
-                    Your Post title
+                    {{post['title']}}
                 </div>
                 <div class="card-body">
-                    Create message for share with your friends.
+                    {{post['description']}}
                 </div>
                 <div class="card-footer">
-                    <span>10:25 am 01/11/12</span>
-                    <span>Camilo Cifuentes</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    Your Post title
-                </div>
-                <div class="card-body">
-                    Create message for share with your friends.
-                </div>
-                <div class="card-footer">
-                    <span>10:25 am 01/11/12</span>
-                    <span>Camilo Cifuentes</span>
+                    <span>{{post['date_created'] | date}}</span>
+                    <span>{{post['name']}}</span>
                 </div>
             </div>
         </div>
 
-        <div class="pagination">
-            <span class="firstPage">
+        <div class="pagination" *ngIf="posts">
+            <div class="firstPage" (click)="pagination(firstPage)">
                 <fa-icon [icon]="faanglesleft"></fa-icon>
-            </span>
-            <span class="before">
+            </div>
+            <div class="before" (click)="pagination(before)">
                 <fa-icon [icon]="faangleleft"></fa-icon>
-            </span>
-            <span class="active">1</span>
-            <span>2</span>
-            <span>3</span>
-            <span class="next">
+            </div>
+            <div class="active" (click)="pagination(actualPage)">{{actualPage}}</div>
+            <div (click)="pagination(second)" *ngIf="actualPage != second">{{second}}</div>
+            <div (click)="pagination(third)" *ngIf="actualPage != third">{{third}}</div>
+            <div class="next" (click)="pagination(next)">
                 <fa-icon [icon]="faangleright"></fa-icon>
-            </span>
-            <span class="lastPage">
+            </div>
+            <div class="lastPage" (click)="pagination(lastPage)">
                 <fa-icon [icon]="faanglesright"></fa-icon>
-            </span>
+            </div>
         </div>
     </div>
 
-    <div class="posts-empty" style="display: none;">
+    <div class="posts-empty" *ngIf="!posts">
         <img src="/assets/img/smiley.png" alt="">
         <h2>Nothing to see here</h2>
     </div>

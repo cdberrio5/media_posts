@@ -34,7 +34,7 @@ class Post {
 
             const dateQuery   = date ? `AND date_created >= '${date} 00:00:00' AND date_created <= '${date} 23:59:59'` : "";
 
-            const query = `SELECT count(id) as total, id, (select full_name from users where id = id_user) as name, title, description, date_created     FROM posts where 1 = 1 ${dateQuery} and id_user = '${userId}' ORDER BY id LIMIT ${offset}, ${limit}`;
+            const query = `SELECT id, (select full_name from users where id = id_user) as name, title, description, date_created FROM posts where 1 = 1 ${dateQuery} and id_user = '${userId}' ORDER BY id LIMIT ${offset}, ${limit}`;
 
             db.query(query, [], (err, results) => {
                 if (err) {
