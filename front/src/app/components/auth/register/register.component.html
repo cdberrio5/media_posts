@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="logo-row">
+        <div class="logo"></div>
+        <div class="title">
+            <h2>Easy Media</h2>
+            <span>Now, share is easy</span>
+        </div>
+    </div>
+    <div class="form-row">
+        <h2>Sign Up</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="form">
+                <div class="group">
+                    <span>Full Name</span>
+                    <div class="input">
+                        <input type="text" placeholder="Camilo Cifuentes" formControlName="fullName">
+                    </div>
+                    <span *ngIf="registerForm.controls['fullName'].errors && registerForm.controls['fullName'].errors['required']" class="error">Please provide a full name</span>
+                </div>
+                <div class="group">
+                    <span>Email</span>
+                    <div class="input">
+                        <input type="email" placeholder="example@email.com" formControlName="email">
+                    </div>
+                    <span *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].errors['required']" class="error">Please provide a email</span>
+                    <span *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].errors['email']" class="error">Please provide a valid email</span>
+                </div>
+                <div class="group">
+                    <span>Password</span>
+                    <div class="input">
+                        <input type="password" placeholder="**************" formControlName="password">
+                    </div>
+                    <span *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].errors['required']" class="error">Please provide a password</span>
+                </div>
+                <div class="group">
+                    <span>Confirm Password</span>
+                    <div class="input">
+                        <input type="password" placeholder="**************" formControlName="confirmPassword">
+                    </div>
+                    <span *ngIf="registerForm.controls['confirmPassword'].errors && registerForm.controls['confirmPassword'].errors['required']" class="error">Please provide a password</span>
+                    <span *ngIf="registerForm.errors && registerForm.errors['passwordNotMatch']" class="error">Passwords do not match</span>
+                </div>
+    
+                <div class="group">
+                    <button type="submit">
+                        sign up
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="footer">
+        <div>
+            <h3>Don't have an account? <a href="auth/register">Sign up here</a></h3>
+        </div>
+
+    </div>
+</div>
