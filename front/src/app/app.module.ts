@@ -14,6 +14,7 @@ import { MyPostsComponent } from './components/feed/my-posts/my-posts.component'
 import { PostsComponent } from './components/feed/posts/posts.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { LogOutComponent } from './components/feed/log-out/log-out.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FeedComponent } from './components/feed/feed.component';
     MyPostsComponent,
     PostsComponent,
     NavbarComponent,
-    FeedComponent
+    FeedComponent,
+    LogOutComponent
   ],
   imports: [
     BrowserModule,
