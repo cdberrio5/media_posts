@@ -21,15 +21,17 @@
                 <div class="group">
                     <span>Password</span>
                     <div class="input">
-                        <input type="password" placeholder="**************" formControlName="password">
+                        <input type="password" minlength="8" placeholder="**************" formControlName="password">
                     </div>
                     <span *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']" class="error">Please provide a password</span>
+                    <span *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['minlength']" class="error">The password must have a minimum of 8 characters</span>
                 </div>
     
                 <div class="group">
                     <button type="submit">
                         sign in
                     </button>
+                    <span *ngIf="!auth">Invalid email or password</span>
                 </div>
             </div>
         </form>
