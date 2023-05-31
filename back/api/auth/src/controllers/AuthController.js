@@ -24,7 +24,7 @@ class AuthController {
 
       const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-      return res.json({ token });
+      return res.json({ token, name: user.full_name });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Error en el servidor' });
