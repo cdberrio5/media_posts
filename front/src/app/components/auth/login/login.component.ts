@@ -38,6 +38,8 @@ export class LoginComponent {
         Validators.min(8),
        ])]
     });
+
+    this.validateUser();
   }
 
   login() {
@@ -61,5 +63,11 @@ export class LoginComponent {
   showPassword(change: boolean, type: string) {
     this.showPass = change;
     this.password.nativeElement.type = type;   
+  }
+
+  validateUser() {
+    if(localStorage.getItem("secret-key")) {
+      this.router.navigate(["/home"]);
+    }
   }
 }

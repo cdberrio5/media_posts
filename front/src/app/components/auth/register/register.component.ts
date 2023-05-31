@@ -51,6 +51,8 @@ export class RegisterComponent {
     }, {
       validators: this.validatePasswords.bind(this)
     });
+
+    this.validateUser();
   }
 
   register() {
@@ -88,5 +90,11 @@ export class RegisterComponent {
   showConfirmPassword(change: boolean, type: string) {
     this.showConfirmPass = change;
     this.confirmPassword.nativeElement.type = type;    
+  }
+
+  validateUser() {
+    if(localStorage.getItem("secret-key")) {
+      this.router.navigate(["/home"]);
+    }
   }
 }

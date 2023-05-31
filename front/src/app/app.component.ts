@@ -9,17 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'front';
 
-  constructor(private router: Router) {
+  constructor() {
 
-  }
-
-  ngOnInit() {
-    this.validateUser();
-  }
-
-  validateUser() {
-    if(localStorage.getItem("secret-key")) {
-      this.router.navigate(["/home"]);
-    }
   }
 }
