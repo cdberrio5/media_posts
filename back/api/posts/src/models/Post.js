@@ -9,17 +9,13 @@ class Post {
             const searchQuery = search ? `AND title like '%${search}%'` : "";
             const dateQuery   = date ? `AND date_created >= '${date} 00:00:00' AND date_created <= '${date} 23:59:59'` : "";
 
-            const query = `SELECT count(id) as total, id, (select full_name from users where id = id_user) as name, title, description, date_created FROM posts where 1 = 1 ${searchQuery} ${dateQuery} ORDER BY id LIMIT ${offset}, ${limit}`;
-            db.query(query, [], (err, results) => {
+            const query = `SELECT id, (select full_name from users where id = id_user) as name, title, description, date_created FROM posts where 1 = 1 ${searchQuery} ${dateQuery} ORDER BY id desc LIMIT ${offset}, ${limit}`;
+            db.query(query, [], (err, results, fields) => {
                 if (err) {
                     reject(err);
                 } else {
-                    const pages = results.length > 0 ? Math.round(results[0].total / 2) : 0;
-
-                    console.log();
 
                     const out = {
-                        pages,
                         posts: results[0].total == 0 ? [] : results
                     }
 
@@ -69,6 +65,23 @@ class Post {
                 }
             });
         });
+    }
+
+    static getCountPosts(search = "", date = "", userId = "") {
+        return new Promise((resolve, reject) => {
+            const searchQuery = search ? `AND title like '%${search}%'` : "";
+            const dateQuery   = date ? `AND date_created >= '${date} 00:00:00' AND date_created <= '${date} 23:59:59'` : "";
+            const userQuery   = userId ? `AND id_user = '${userId}'` : "";
+
+            const query = `SELECT count(*) as records FROM posts where 1 = 1 ${searchQuery} ${dateQuery} ${userQuery}`;
+            db.query(query, [], (err, results) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    return resolve(results[0]["records"]);
+                }
+            });
+        })
     }
 }
 

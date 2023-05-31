@@ -44,8 +44,10 @@ class PostController {
         const { page, search, date } = req.query;
 
         try {
-
             const posts = await Post.getPosts(page, search, date);
+
+            posts.total = await Post.getCountPosts(search, date);
+            posts.pages = posts.total > 0 ? Math.round(posts.total / 2) : 0;
 
             return res.status(200).json(posts);
 

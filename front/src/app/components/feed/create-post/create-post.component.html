@@ -6,15 +6,17 @@
             <div class="group">
                 <span>Title messages</span>
                 <div class="input">
-                    <input type="text" formControlName="title" placeholder="Your post title">
+                    <input type="text" formControlName="title" (change)="titleSet($event)" placeholder="Your post title">
                 </div>
+                <span *ngIf="postForm.controls['title'].errors && postForm.controls['title'].errors['required']" class="error">Please provide a title</span>
             </div>
 
             <div class="group">
                 <span>Title messages</span>
                 <div class="input">
-                    <textarea placeholder="Create message for share with your friends" maxlength="100" cols="30" rows="10"></textarea>
+                    <textarea formControlName="message" (change)="msgSet($event)" placeholder="Create message for share with your friends" maxlength="100" cols="30" rows="10"></textarea>
                 </div>
+                <span *ngIf="postForm.controls['message'].errors && postForm.controls['message'].errors['required']" class="error">Please provide a message</span>
                 <span class="maxlength">100 / 100</span>
             </div>
 
@@ -30,22 +32,16 @@
         <div class="cards" >
             <div class="card">
                 <div class="card-header">
-                    Your Post title
+                    {{title}}
                 </div>
                 <div class="card-body">
-                    Create message for share with your friends.
+                    {{description}}
                 </div>
                 <div class="card-footer">
-                    <span>10:25 am 01/11/12</span>
-                    <span>Camilo Cifuentes</span>
+                    <span>{{now | date}}</span>
+                    <span>{{name}}</span>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="posts-empty" style="display: none;">
-        <img src="/assets/img/smiley.png" alt="">
-        <h2>Nothing to see here</h2>
-    </div>
 </div>
-
