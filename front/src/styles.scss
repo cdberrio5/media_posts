@@ -6,6 +6,11 @@ html, body {
     padding: 0px !important;
 }
 
+@font-face {
+    font-family: lato;
+    src: url('/assets/fonts/lato/Lato-Regular.ttf');
+}
+
 * {
-    font-family: "Gill Sans Extrabold", sans-serif;
+    font-family: "lato", sans-serif;
 }
