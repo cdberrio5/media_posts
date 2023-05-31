@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 const authRoutes = require('./routes/routes');
 
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.use('/api/auth', authRoutes);
+app.use('/api/posts', authRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);

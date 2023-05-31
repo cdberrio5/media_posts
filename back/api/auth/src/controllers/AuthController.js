@@ -22,7 +22,7 @@ class AuthController {
         return res.status(401).json({ message: 'Credenciales inválidas' });
       }
 
-      const token = jwt.sign({ userId: user.id }, 'secreto', { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
       return res.json({ token });
     } catch (error) {
