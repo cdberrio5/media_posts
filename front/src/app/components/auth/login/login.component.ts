@@ -30,10 +30,6 @@ export class LoginComponent {
   }
 
   login() {
-
-    console.log(this.loginForm);
-    
-
     if(this.loginForm.invalid) {
       return;
     }

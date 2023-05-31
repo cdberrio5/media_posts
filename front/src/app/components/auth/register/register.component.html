@@ -16,6 +16,7 @@
                         <input type="text" placeholder="Camilo Cifuentes" formControlName="fullName">
                     </div>
                     <span *ngIf="registerForm.controls['fullName'].errors && registerForm.controls['fullName'].errors['required']" class="error">Please provide a full name</span>
+                    <span *ngIf="registerForm.controls['fullName'].errors && registerForm.controls['fullName'].errors['pattern']" class="error">Please provide a valid full name</span>
                 </div>
                 <div class="group">
                     <span>Email</span>
@@ -28,9 +29,10 @@
                 <div class="group">
                     <span>Password</span>
                     <div class="input">
-                        <input type="password" placeholder="**************" formControlName="password">
+                        <input type="password" minlength="8" placeholder="**************" formControlName="password">
                     </div>
                     <span *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].errors['required']" class="error">Please provide a password</span>
+                    <span *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].errors['minlength']" class="error">The password must have a minimum of 8 characters</span>
                 </div>
                 <div class="group">
                     <span>Confirm Password</span>
