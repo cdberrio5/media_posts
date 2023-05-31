@@ -1,13 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent {
+  @ViewChild('password') password!: ElementRef;
+  @ViewChild('confirmPassword') confirmPassword!: ElementRef;
+
   registerForm!: FormGroup;
+
+  faeye = faEye;
+  faeyeslash = faEyeSlash;
+  auth: boolean = true;
+  showPass: boolean = false;
+  showConfirmPass: boolean = false;
 
   constructor(private fb: FormBuilder) {
 
@@ -48,5 +61,15 @@ export class RegisterComponent {
     const confirmPassword = formGroup.get("confirmPassword")?.value
 
     return password == confirmPassword ? null : { passwordNotMatch: true };
+  }
+
+  showPassword(change: boolean, type: string) {
+    this.showPass = change;
+    this.password.nativeElement.type = type;   
+  }
+
+  showConfirmPassword(change: boolean, type: string) {
+    this.showConfirmPass = change;
+    this.confirmPassword.nativeElement.type = type;    
   }
 }
