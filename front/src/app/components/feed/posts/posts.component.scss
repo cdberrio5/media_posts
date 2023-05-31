@@ -49,10 +49,6 @@
                         &::placeholder {
                             color: #B7B7B7;
                         }
-
-                        &::-webkit-calendar-picker-indicator {
-                            background: none;
-                        }
                     }
 
                     .icon {
@@ -138,6 +134,7 @@
                     justify-content: space-between;
                     align-items: flex-start;
                     width: 100%;
+                    margin-bottom: 5px;
 
                     span {
                         margin-left: 15px;

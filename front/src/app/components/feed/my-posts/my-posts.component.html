@@ -1,1 +1,69 @@
-<p>my-posts works!</p>
+<div class="container">
+    <h1>My Publications</h1>
+
+    <div class="filters">
+        <form [formGroup]="filterForm" (ngSubmit)="filter()">
+            <div class="group">
+                <span>Date Select</span>
+                <div class="input">
+                    <input type="date" formControlName="date">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="posts" >
+        <span class="count">Showing 2 / 10 Post</span>
+
+        <div class="cards" >
+            <div class="card">
+                <div class="card-header">
+                    Your Post title
+                </div>
+                <div class="card-body">
+                    Create message for share with your friends.
+                </div>
+                <div class="card-footer">
+                    <span>10:25 am 01/11/12</span>
+                    <span>Camilo Cifuentes</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Your Post title
+                </div>
+                <div class="card-body">
+                    Create message for share with your friends.
+                </div>
+                <div class="card-footer">
+                    <span>10:25 am 01/11/12</span>
+                    <span>Camilo Cifuentes</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <span class="firstPage">
+                <fa-icon [icon]="faanglesleft"></fa-icon>
+            </span>
+            <span class="before">
+                <fa-icon [icon]="faangleleft"></fa-icon>
+            </span>
+            <span class="active">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span class="next">
+                <fa-icon [icon]="faangleright"></fa-icon>
+            </span>
+            <span class="lastPage">
+                <fa-icon [icon]="faanglesright"></fa-icon>
+            </span>
+        </div>
+    </div>
+
+    <div class="posts-empty" style="display: none;">
+        <img src="/assets/img/smiley.png" alt="">
+        <h2>Nothing to see here</h2>
+    </div>
+</div>
