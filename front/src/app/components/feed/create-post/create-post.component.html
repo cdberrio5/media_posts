@@ -1,1 +1,50 @@
-<p>create-post works!</p>
+<div class="container">
+    <h1>Create message</h1>
+
+    <div class="filters">
+        <form [formGroup]="postForm" (ngSubmit)="createPost()">
+            <div class="group">
+                <span>Title messages</span>
+                <div class="input">
+                    <input type="text" formControlName="title" placeholder="Your post title">
+                </div>
+            </div>
+
+            <div class="group">
+                <span>Title messages</span>
+                <div class="input">
+                    <textarea placeholder="Create message for share with your friends" maxlength="100" cols="30" rows="10"></textarea>
+                </div>
+                <span class="maxlength">100 / 100</span>
+            </div>
+
+            <div class="group">
+                <button type="submit">
+                    share
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="posts" >
+        <div class="cards" >
+            <div class="card">
+                <div class="card-header">
+                    Your Post title
+                </div>
+                <div class="card-body">
+                    Create message for share with your friends.
+                </div>
+                <div class="card-footer">
+                    <span>10:25 am 01/11/12</span>
+                    <span>Camilo Cifuentes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="posts-empty" style="display: none;">
+        <img src="/assets/img/smiley.png" alt="">
+        <h2>Nothing to see here</h2>
+    </div>
+</div>
