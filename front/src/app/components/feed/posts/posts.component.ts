@@ -75,8 +75,8 @@ export class PostsComponent {
       this.lastPage = res.pages;
 
       this.actualPage  = res.pages > 2 ? res.pages - 3 : 1;
-      this.second = res.pages > 1 ? res.pages - 2 : 1;
-      this.third  = res.pages > 1 ? res.pages - 1 : 1;
+      this.second = res.pages > 1 ? this.actualPage + 1 : 1;
+      this.third  = res.pages > 2 ? this.actualPage + 2 : 1;
 
       this.next = this.second;
       this.before = this.actualPage > 1 ? this.actualPage - 1 : 1;
@@ -90,6 +90,8 @@ export class PostsComponent {
 
   pagination(nextPage: number) {
     this.nextPage = nextPage;
+
+    this.loadPosts();
   }
 
   filterDate(time: any) {

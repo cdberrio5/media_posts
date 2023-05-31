@@ -38,21 +38,21 @@
         </div>
 
         <div class="pagination" *ngIf="posts">
-            <span class="firstPage" (click)="pagination(firstPage)">
+            <div class="firstPage" (click)="pagination(firstPage)">
                 <fa-icon [icon]="faanglesleft"></fa-icon>
-            </span>
-            <span class="before" (click)="pagination(before)">
+            </div>
+            <div class="before" (click)="pagination(before)">
                 <fa-icon [icon]="faangleleft"></fa-icon>
-            </span>
-            <span class="active" (click)="pagination(actualPage)">{{actualPage}}</span>
-            <span (click)="pagination(second)" *ngIf="actualPage != second">{{second}}</span>
-            <span (click)="pagination(third)" *ngIf="actualPage != third">{{third}}</span>
-            <span class="next" (click)="pagination(next)">
+            </div>
+            <div class="active" (click)="pagination(actualPage)">{{actualPage}}</div>
+            <div (click)="pagination(second)" *ngIf="actualPage != second">{{second}}</div>
+            <div (click)="pagination(third)" *ngIf="actualPage != third">{{third}}</div>
+            <div class="next" (click)="pagination(next)">
                 <fa-icon [icon]="faangleright"></fa-icon>
-            </span>
-            <span class="lastPage" (click)="pagination(lastPage)">
+            </div>
+            <div class="lastPage" (click)="pagination(lastPage)">
                 <fa-icon [icon]="faanglesright"></fa-icon>
-            </span>
+            </div>
         </div>
     </div>
 
